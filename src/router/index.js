@@ -7,12 +7,12 @@ import error from '@/page/error'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
-    {
-      path: '*',
-      component: error
-    },
+    // {
+    //   path: '*',
+    //   component: error
+    // },
     {
       path: '/',
       component: Welcome
