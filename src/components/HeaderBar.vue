@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" >
-      <el-menu-item index="1">营养健康评分平台</el-menu-item>
-      <el-menu-item index="2">搜索评估</el-menu-item>
-      <el-menu-item index="3">推荐饮食</el-menu-item>
+    <el-menu  class="el-menu-demo" mode="horizontal" >
+      <el-menu-item ><router-link :to="{path:'home'}">营养健康评分平台</router-link></el-menu-item>
+      <el-menu-item ><router-link :to="{path:'assess'}">搜索评估</router-link></el-menu-item>
+      <el-menu-item >推荐饮食</el-menu-item>
       <a href="" class="user_info">XXXX</a>
     </el-menu>
   </div>
@@ -16,13 +16,13 @@ export default {
 
   data () {
     return {
-      activeIndex: '1'
+
     }
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="less" scoped>
   .user_info{
     display: block;
     float: right;
@@ -30,5 +30,17 @@ export default {
     margin-right: 60px;
     text-decoration: none;
     color:red;
+  }
+  .el-menu-item{
+    font-size: 24px;
+    a{
+      text-decoration:none;
+    }
+  }
+  .el-menu-item:nth-child(2){
+    font-size: 18px;
+  }
+  .el-menu-item:nth-child(3 ){
+    font-size: 18px;
   }
 </style>

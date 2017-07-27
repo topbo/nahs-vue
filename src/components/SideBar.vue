@@ -23,6 +23,7 @@
       <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
       <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
       <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+      <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
     </el-menu>
   </el-col>
   </div>
