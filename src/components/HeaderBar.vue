@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <el-menu  class="el-menu-demo" mode="horizontal" >
-      <el-menu-item ><router-link :to="{path:'home'}">营养健康评分平台</router-link></el-menu-item>
-      <el-menu-item ><router-link :to="{path:'assess'}">搜索评估</router-link></el-menu-item>
-      <el-menu-item >推荐饮食</el-menu-item>
-      <a href="" class="user_info">XXXX</a>
+  <div class="headerbar">
+    <el-menu   :default-active="itemidex" class="el-menu-demo" mode="horizontal" router>
+      <el-menu-item index="home">营养健康评分平台</el-menu-item>
+      <el-menu-item index="assess">搜索评估</el-menu-item>
+      <el-menu-item index="recommend">推荐饮食</el-menu-item>
+      <div class="rightbar">
+        <a href="" class="user_info">xiebo</a>
+        <a href="" class="quit" >退出</a>
+      </div>
+
     </el-menu>
   </div>
 </template>
@@ -13,34 +17,35 @@
 export default {
 
   name: 'HeaderBar',
-
   data () {
     return {
-
+      router: true,
+      itemidex: this.$props.myindex
     }
-  }
+  },
+  props: ['myindex']
 }
 </script>
 
 <style lang="less" scoped>
-  .user_info{
-    display: block;
-    float: right;
-    margin-top: 20px;
-    margin-right: 60px;
-    text-decoration: none;
-    color:red;
+  .el-menu{
+    padding-left: 20px;
   }
-  .el-menu-item{
-    font-size: 24px;
+  .rightbar{
+    float: right;
+    padding-top: 15px;
+    padding-right: 60px;
     a{
-      text-decoration:none;
+
+      margin-left: 10px;
+      text-decoration: none;
+      color:#333;
     }
   }
-  .el-menu-item:nth-child(2){
-    font-size: 18px;
-  }
-  .el-menu-item:nth-child(3 ){
-    font-size: 18px;
-  }
+
+  .el-menu-item{
+    font-size: 24px;
+    }
+
+
 </style>

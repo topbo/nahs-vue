@@ -2,8 +2,8 @@
   <div>
     <HeaderBar :myindex='activeIndex2'></HeaderBar>
     <form action="" method="" accept-charset="utf-8">
-      <input class="in" v-model="search" placeholder="输入关键字  例: 西红柿炒鸡蛋">
-      <el-button @click="findfood(search)">提交</el-button>
+      <input class="in" v-model="search" placeholder="输入关键字">
+      <input class="out" type="button" name="" value="提交" @click="findfood(search)">
     </form>
     <div class="result" v-for="item in foodList">
       <h2>{{item.name}}</h2>
@@ -34,13 +34,14 @@ export default {
   components: {
     HeaderBar
   },
-  methods: {
-    findfood (name) {
-      this.$http.get('/api/foodList/' + name).then(
+  mounted () {
+    let name = this.$route.params.name
+    console.log(name)
+
+    this.$http.get('/api/foodList/' + name).then(
       response => { this.foodList = [response.body] },
       response => console.log(response)
-      )
-    }
+    )
   }
 }
 </script>
@@ -60,8 +61,12 @@ form{
   height: 35px;
   padding-left: 10px;
   width: 250px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid #666;
   border-radius:6px;
+}
+.out{
+  height: 35px;
+  width: 70px;
 }
 .foodimg{
   display: block;

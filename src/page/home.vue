@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <HeaderBar :myindex='activeIndex1'></HeaderBar>
     <SideBar></SideBar>
     <div id="myChart" :style="{width:'900px',height:'400px'}">
 
@@ -17,7 +17,7 @@ export default {
 
   data () {
     return {
-
+      activeIndex1: 'home'
     }
   },
   components: {
