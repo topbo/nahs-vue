@@ -6,6 +6,8 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import echarts from 'echarts'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
