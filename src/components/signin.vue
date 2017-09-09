@@ -14,9 +14,9 @@
           <el-form-item label="确认密码" prop="checkPass">
             <el-input type="password" v-model="ruleForm.checkPass" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label-width="60px">
-            <el-button type="default" @click="submitForm('ruleForm')">登录</el-button>
-          </el-form-item>
+            <el-button @click="signup('ruleForm')">注册</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+
         </el-form>
       </div>
     </el-col>
@@ -70,18 +70,84 @@ export default {
   },
   methods: {
     submitForm (formName) {
+      let _this = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
-          this.$router.push('home')
+          this.$http.get('/api/admin/getUser/' + this.ruleForm.name).then(
+          response => {
+            if (_this.ruleForm.pass !== response.body.pass) {
+              _this.$message.error('用户名或密码不正确')
+            } else {
+              let obj = {
+                name: _this.ruleForm.name,
+                pass: _this.ruleForm.pass
+              }
+              _this.$http.post('/api/admin/signin', {
+                userInfo: obj
+              }).then(
+                response => {
+                  _this.$message({
+                    message: '登录成功',
+                    type: 'success'
+                  })
+                  delete _this.ruleForm.pass
+                  _this.$router.push('home')
+                },
+                response => console.log('登录失败' + response)
+              )
+            }
+          },
+          response => {
+            _this.$message.error('该用户不存在')
+            return
+          }
+        )
         } else {
-          console.log('error submit!!')
+          alert('error submit!!')
           return false
         }
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    signup (formName) {
+      let _this = this
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$http.get('/api/admin/getUser/' + this.ruleForm.name).then(
+          response => {
+            if (response.body.name === _this.ruleForm.name) {
+              _this.$message.error('该用户已存在')
+              _this.name = ''
+              // 由于异步，name的改变比正常流执行得慢，所以不能通过判断name去执行是否post
+              // 所以我把post移入else中，而不是在外面通过判断name执行
+            } else {
+              let obj = {
+                name: _this.ruleForm.name,
+                pass: _this.ruleForm.pass
+              }
+
+              _this.$http.post('/api/admin/signup', {
+                userInfo: obj
+              }).then(
+                response => {
+                  _this.$message({
+                    message: '注册成功',
+                    type: 'success'
+                  })
+                },
+                response => console.log('s0hiai')
+              )
+            }
+          },
+          response => console.log(response)
+        )
+        } else {
+          this.$message({
+            message: '请按正确格式填写所有内容',
+            type: 'warning'
+          })
+          return false
+        }
+      })
     }
   }
 }

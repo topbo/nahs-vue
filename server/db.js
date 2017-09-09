@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost:27017/nahs')
 
 const userSchema = new mongoose.Schema({
   name: String,
-  password: String
+  pass: String
 })
 const foodSchema = new mongoose.Schema({},{collection: 'food'})
 

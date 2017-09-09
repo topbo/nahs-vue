@@ -11,16 +11,20 @@ router.post('/api/admin/signup', function(req, res) {
   new db.User(req.body.userInfo).save(function(err) {
     if (err) {
       res.status(500).send()
+      console.log(err)
       return
     }
+    console.log(req.body.userInfo)
     res.send()
   })
 })
 
 // 登录
-router.post('/api/admin/signin', function(req, res) {
-  // req.session.user = req.body.userInfo
-  res.send()
+router.post('/api/admin/signin',function(req, res) {
+
+    res.send()
+
+
 })
 
 // 根据用户名获取用户

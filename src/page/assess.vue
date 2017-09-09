@@ -5,7 +5,7 @@
       <input class="in" v-model="search" placeholder="输入关键字  例: 西红柿炒鸡蛋">
       <el-button @click="findfood(search)">提交</el-button>
     </form>
-    <div class="result" v-for="item in foodList">
+    <div class="result" v-if="ok" v-for="item in foodList">
       <h2>{{item.name}}</h2>
       <el-rate
           v-model="item.rate"
@@ -16,6 +16,10 @@
       </el-rate>
       <p>{{item.function}}</p>
       <img :src="item.img" alt="" class="foodimg">
+    </div>
+    <div v-else>
+      <h1>未查询到关于此物品的相关信息</h1>
+      <a href="">联系我们</a>
     </div>
   </div>
 </template>
@@ -28,7 +32,8 @@ export default {
     return {
       activeIndex2: 'assess',
       search: '',
-      foodList: []
+      foodList: [],
+      ok: true
     }
   },
   components: {
@@ -37,8 +42,10 @@ export default {
   methods: {
     findfood (name) {
       this.$http.get('/api/foodList/' + name).then(
-      response => { this.foodList = [response.body] },
-      response => console.log(response)
+      response => {
+        this.foodList = [response.body]
+      },
+      response => { console.log(response) }
       )
     }
   }

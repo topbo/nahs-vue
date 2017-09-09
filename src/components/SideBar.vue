@@ -1,6 +1,6 @@
 <template>
   <div class="siderbar">
-    <el-col :span="3">
+    <el-col :span="4">
     <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-message"></i>饮食评分</template>
