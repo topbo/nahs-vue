@@ -1,6 +1,6 @@
 <template>
   <div>
-    404
+    <h2>404页面别吃了</h2>
   </div>
 </template>
 

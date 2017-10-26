@@ -1,6 +1,6 @@
 <template>
   <div class="headerbar">
-    <el-menu   :default-active="itemidex" class="el-menu-demo" mode="horizontal" router>
+    <el-menu  :default-active="itemidex" class="el-menu-demo" mode="horizontal" router>
       <el-menu-item index="home">营养健康评分平台</el-menu-item>
       <el-menu-item index="assess">搜索评估</el-menu-item>
       <el-menu-item index="recommend">推荐饮食</el-menu-item>

@@ -14,7 +14,6 @@ router.post('/api/admin/signup', function(req, res) {
       console.log(err)
       return
     }
-    console.log(req.body.userInfo)
     res.send()
   })
 })

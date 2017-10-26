@@ -60,4 +60,7 @@ export default {
   .title_s{
     margin-top: -30px;
   }
+  .grid-content{
+    text-align: center;
+  }
 </style>

@@ -75,7 +75,7 @@ export default {
         if (valid) {
           this.$http.get('/api/admin/getUser/' + this.ruleForm.name).then(
           response => {
-            if (_this.ruleForm.pass !== response.body.pass) {
+            if (_this.ruleForm.pass !== response.data.pass) {
               _this.$message.error('用户名或密码不正确')
             } else {
               let obj = {
@@ -92,16 +92,16 @@ export default {
                   })
                   delete _this.ruleForm.pass
                   _this.$router.push('home')
-                },
+                }).catch(
                 response => console.log('登录失败' + response)
               )
             }
-          },
-          response => {
-            _this.$message.error('该用户不存在')
-            return
-          }
-        )
+          }).catch(
+            response => {
+              _this.$message.error('该用户不存在')
+              return
+            }
+          )
         } else {
           alert('error submit!!')
           return false
@@ -112,14 +112,15 @@ export default {
       let _this = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.get('/api/admin/getUser/' + this.ruleForm.name).then(
+          this.$http.get('/api/admin/getUser/' + _this.ruleForm.name).then(
           response => {
-            if (response.body.name === _this.ruleForm.name) {
+            if (response.data.name === _this.ruleForm.name) {
               _this.$message.error('该用户已存在')
               _this.name = ''
               // 由于异步，name的改变比正常流执行得慢，所以不能通过判断name去执行是否post
               // 所以我把post移入else中，而不是在外面通过判断name执行
             } else {
+              console.log(response)
               let obj = {
                 name: _this.ruleForm.name,
                 pass: _this.ruleForm.pass
@@ -133,11 +134,11 @@ export default {
                     message: '注册成功',
                     type: 'success'
                   })
-                },
-                response => console.log('s0hiai')
+                }).catch(
+                response => console.log('注册失败')
               )
             }
-          },
+          }).catch(
           response => console.log(response)
         )
         } else {
@@ -157,5 +158,8 @@ export default {
   .demo-ruleForm{
     margin-top: 20px;
     margin-left: -50px;
+  }
+  .grid-content{
+    text-align: center;
   }
 </style>

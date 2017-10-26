@@ -87,5 +87,6 @@ export default {
 #myChart{
   float: left;
   margin-top: 20px;
+  margin-left: 50px;
 }
 </style>

@@ -40,11 +40,12 @@ export default {
     HeaderBar
   },
   methods: {
+
     findfood (name) {
       this.$http.get('/api/foodList/' + name).then(
       response => {
-        this.foodList = [response.body]
-      },
+        this.foodList = [response.data]
+      }).catch(
       response => { console.log(response) }
       )
     }
@@ -62,6 +63,10 @@ form{
   height: 35px;
   width:auto;
   margin-top: 30px;
+  text-align: center;
+}
+.result{
+  text-align: center;
 }
 .in{
   height: 35px;
@@ -74,5 +79,7 @@ form{
   display: block;
   width: auto;
   height: 300px;
+  margin: auto;
+
 }
 </style>
